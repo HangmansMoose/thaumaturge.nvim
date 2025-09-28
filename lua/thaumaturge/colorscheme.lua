@@ -2,15 +2,15 @@ local config = require 'my-theme.config'
 
 local colorscheme = {
   standardWhite = '#ffffff',
-  standardBlack = '#1e1e1e',
+  standardBlack = '#151515',
 }
 
 if vim.o.background == 'light' then
-  colorscheme.editorBackground = config.transparent and 'none' or '#ffffff'
-  colorscheme.sidebarBackground = '#dddddd'
-  colorscheme.popupBackground = '#f6f6f6'
-  colorscheme.floatingWindowBackground = '#e0e0e0'
-  colorscheme.menuOptionBackground = '#ededed'
+  colorscheme.editorBackground = config.transparent and 'none' or '#151515'
+  colorscheme.sidebarBackground = '#151515'
+  colorscheme.popupBackground = '#303030'
+  colorscheme.floatingWindowBackground = '#303030'
+  colorscheme.menuOptionBackground = '#555555'
 
   colorscheme.mainText = '#616161'
   colorscheme.emphasisText = '#212121'
