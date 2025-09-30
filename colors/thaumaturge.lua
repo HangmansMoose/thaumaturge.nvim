@@ -1,1 +1,1 @@
-require("my-theme").colorscheme()
+require("lualine.themes.thaumaturge").colorscheme()

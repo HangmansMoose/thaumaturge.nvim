@@ -1,4 +1,4 @@
-local config = require 'my-theme.config'
+local config = require 'thaumaturge.config'
 
 local colorscheme = {
   main_bg = config.transparent and 'none' or '#151515',
