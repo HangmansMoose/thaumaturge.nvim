@@ -1,64 +1,61 @@
-local bufferline = require 'my-theme.integrations.bufferline'
-local cmp = require 'my-theme.integrations.cmp'
-local colorscheme = require 'my-theme.colorscheme'
-local config = require 'my-theme.config'
-local utils = require 'my-theme.utils'
+--local bufferline = require 'my-theme.integrations.bufferline'
+--local cmp = require 'my-theme.integrations.cmp'
+local colorscheme = require 'thaumaturge.colorscheme'
+local config = require 'thaumaturge.config'
+local utils = require 'thaumaturge.utils'
 local theme = {}
 
 local function set_terminal_colors()
-  vim.g.terminal_color_0 = colorscheme.editorBackground
+  vim.g.terminal_color_0 = colorscheme.main_bg
   vim.g.terminal_color_1 = colorscheme.syntaxError
   vim.g.terminal_color_2 = colorscheme.successText
   vim.g.terminal_color_3 = colorscheme.warningEmphasis
-  vim.g.terminal_color_4 = colorscheme.syntaxFunction
-  vim.g.terminal_color_5 = colorscheme.syntaxKeyword
+  vim.g.terminal_color_4 = colorscheme.burlywood3
+  vim.g.terminal_color_5 = colorscheme.dark_goldenrod
   vim.g.terminal_color_6 = colorscheme.linkText
   vim.g.terminal_color_7 = colorscheme.mainText
   vim.g.terminal_color_8 = colorscheme.inactiveText
   vim.g.terminal_color_9 = colorscheme.errorText
-  vim.g.terminal_color_10 = colorscheme.stringText
+  vim.g.terminal_color_10 = colorscheme.olive_drab
   vim.g.terminal_color_11 = colorscheme.warningText
   vim.g.terminal_color_12 = colorscheme.syntaxOperator
   vim.g.terminal_color_13 = colorscheme.syntaxError
-  vim.g.terminal_color_14 = colorscheme.stringText
-  vim.g.terminal_color_15 = colorscheme.commentText
-  vim.g.terminal_color_background = colorscheme.editorBackground
+  vim.g.terminal_color_14 = colorscheme.olive_drab
+  vim.g.terminal_color_15 = colorscheme.gray50
+  vim.g.terminal_color_background = colorscheme.main_bg
   vim.g.terminal_color_foreground = colorscheme.mainText
 end
 
 local function set_groups()
-  local bg = config.transparent and 'NONE' or colorscheme.editorBackground
+  local bg = config.transparent and 'NONE' or colorscheme.main_bg
   local diff_add =
-    utils.shade(colorscheme.successText, 0.5, colorscheme.editorBackground)
+    utils.shade(colorscheme.successText, 0.5, colorscheme.main_bg)
   local diff_delete =
-    utils.shade(colorscheme.syntaxError, 0.5, colorscheme.editorBackground)
+    utils.shade(colorscheme.syntaxError, 0.5, colorscheme.main_bg)
   local diff_change =
-    utils.shade(colorscheme.syntaxFunction, 0.5, colorscheme.editorBackground)
+    utils.shade(colorscheme.burlywood3, 0.5, colorscheme.main_bg)
   local diff_text =
-    utils.shade(colorscheme.warningEmphasis, 0.5, colorscheme.editorBackground)
+    utils.shade(colorscheme.warningEmphasis, 0.5, colorscheme.main_bg)
 
   local groups = {
     -- base
-    Normal = { fg = colorscheme.mainText, bg = bg },
-    LineNr = { fg = colorscheme.lineNumberText },
-    ColorColumn = {
-      bg = utils.shade(colorscheme.linkText, 0.5, colorscheme.editorBackground),
-    },
-    Conceal = {},
-    Cursor = { fg = colorscheme.editorBackground, bg = colorscheme.mainText },
+    Normal = { fg = colorscheme.fg, bg = colorscheme.main_bg },
+    NormalNC = { line = 'Normal' },
+    LineNr = { fg = colorscheme.fg },
+    Cursor = { fg = colorscheme.cursor_foreground, bg = colorscheme.cursor },
     lCursor = { link = 'Cursor' },
     CursorIM = { link = 'Cursor' },
-    CursorLine = { bg = colorscheme.popupBackground },
+    CursorLine = { bg = colorscheme.cursor_line },
     CursorColumn = { link = 'CursorLine' },
-    Directory = { fg = colorscheme.syntaxFunction },
-    DiffAdd = { bg = bg, fg = diff_add },
-    DiffChange = { bg = bg, fg = diff_change },
-    DiffDelete = { bg = bg, fg = diff_delete },
-    DiffText = { bg = bg, fg = diff_text },
-    EndOfBuffer = { fg = colorscheme.syntaxKeyword },
+    Directory = { fg = colorscheme.burlywood3 },
+    --DiffAdd = { bg = bg, fg = diff_add },
+    --DiffChange = { bg = bg, fg = diff_change },
+    --DiffDelete = { bg = bg, fg = diff_delete },
+    --DiffText = { bg = bg, fg = diff_text },
+    EndOfBuffer = { fg = colorscheme.dark_goldenrod },
     TermCursor = { link = 'Cursor' },
     TermCursorNC = { link = 'Cursor' },
-    ErrorMsg = { fg = colorscheme.syntaxError },
+    ErrorMsg = { fg = colorscheme.error_red },
     VertSplit = { fg = colorscheme.windowBorder, bg = bg },
     Winseparator = { link = 'VertSplit' },
     SignColumn = { link = 'Normal' },
@@ -66,34 +63,33 @@ local function set_groups()
     FoldColumn = { link = 'SignColumn' },
     IncSearch = {
       bg = utils.mix(
-        colorscheme.syntaxFunction,
-        colorscheme.editorBackground,
+        colorscheme.burlywood3,
+        colorscheme.main_bg,
         math.abs(0.30)
       ),
-      fg = colorscheme.editorBackground,
+      fg = colorscheme.main_bg,
     },
     Substitute = { link = 'IncSearch' },
-    CursorLineNr = { fg = colorscheme.commentText },
+    CursorLineNr = { fg = colorscheme.gray50 },
     MatchParen = { fg = colorscheme.syntaxError, bg = bg },
     ModeMsg = { link = 'Normal' },
     MsgArea = { link = 'Normal' },
     -- MsgSeparator = {},
-    MoreMsg = { fg = colorscheme.syntaxFunction },
-    NonText = { fg = utils.shade(colorscheme.editorBackground, 0.30) },
-    NormalFloat = { bg = colorscheme.floatingWindowBackground },
-    NormalNC = { link = 'Normal' },
+    MoreMsg = { fg = colorscheme.burlywood3 },
+    NonText = { fg = utils.shade(colorscheme.main_bg, 0.30) },
+    NormalFloat = { bg = colorscheme.floating_bg },
     Pmenu = { link = 'NormalFloat' },
     PmenuSel = { bg = colorscheme.menuOptionBackground },
     PmenuSbar = {
       bg = utils.shade(
-        colorscheme.syntaxFunction,
+        colorscheme.burlywood3,
         0.5,
-        colorscheme.editorBackground
+        colorscheme.main_bg
       ),
     },
-    PmenuThumb = { bg = utils.shade(colorscheme.editorBackground, 0.20) },
-    Question = { fg = colorscheme.syntaxFunction },
-    QuickFixLine = { fg = colorscheme.syntaxFunction },
+    PmenuThumb = { bg = utils.shade(colorscheme.main_bg, 0.20) },
+    Question = { fg = colorscheme.burlywood3 },
+    QuickFixLine = { fg = colorscheme.burlywood3 },
     SpecialKey = { fg = colorscheme.syntaxOperator },
     StatusLine = { fg = colorscheme.mainText, bg = bg },
     StatusLineNC = {
@@ -105,63 +101,49 @@ local function set_groups()
       fg = colorscheme.inactiveText,
     },
     TabLineFill = { link = 'TabLine' },
-    TabLineSel = {
-      bg = colorscheme.editorBackground,
-      fg = colorscheme.emphasisText,
-    },
-    Search = { bg = utils.shade(colorscheme.stringText, 0.40, colorscheme.bg) },
-    SpellBad = { undercurl = true, sp = colorscheme.syntaxError },
-    SpellCap = { undercurl = true, sp = colorscheme.syntaxFunction },
-    SpellLocal = { undercurl = true, sp = colorscheme.syntaxKeyword },
-    SpellRare = { undercurl = true, sp = colorscheme.warningText },
-    Title = { fg = colorscheme.syntaxFunction },
+    Search = { bg = utils.shade(colorscheme.olive_drab, 0.40, colorscheme.bg) },
+    Title = { fg = colorscheme.burlywood3 },
     Visual = {
       bg = utils.shade(
-        colorscheme.syntaxFunction,
+        colorscheme.burlywood3,
         0.40,
-        colorscheme.editorBackground
+        colorscheme.main_bg
       ),
     },
     VisualNOS = { link = 'Visual' },
     WarningMsg = { fg = colorscheme.warningText },
     Whitespace = { fg = colorscheme.syntaxOperator },
     WildMenu = { bg = colorscheme.menuOptionBackground },
-    Comment = {
-      fg = colorscheme.commentText,
-      italic = config.italics.comments or false,
-    },
+    Comment = { fg = colorscheme.gray50 },
 
-    Constant = { fg = colorscheme.syntaxError },
-    String = {
-      fg = colorscheme.stringText,
-      italic = config.italics.strings or false,
-    },
-    Character = { fg = colorscheme.stringText },
-    Number = { fg = colorscheme.foregroundEmphasis, bold = true },
-    Boolean = { fg = colorscheme.syntaxFunction },
+    Constant = { fg = colorscheme.macro_purple },
+    String = { fg = colorscheme.olive_drab },
+    Character = { fg = colorscheme.olive_drab },
+    Number = { fg = colorscheme.day_nine_yellow },
+    Boolean = { fg = colorscheme.burlywood3 },
     Float = { link = 'Number' },
 
     Identifier = { fg = colorscheme.mainText },
-    Function = { fg = colorscheme.syntaxKeyword },
-    Method = { fg = colorscheme.syntaxKeyword },
-    Property = { fg = colorscheme.syntaxFunction },
+    Function = { fg = colorscheme.blue },
+    Method = { fg = colorscheme.zerg_purple },
+    Property = { fg = colorscheme.burlywood3 },
     Field = { link = 'Property' },
     Parameter = { fg = colorscheme.mainText },
     Statement = { fg = colorscheme.syntaxError },
     Conditional = { fg = colorscheme.syntaxError },
     -- Repeat = {},
-    Label = { fg = colorscheme.syntaxFunction },
+    Label = { fg = colorscheme.burlywood3 },
     Operator = { fg = colorscheme.syntaxError },
     Keyword = { link = 'Statement', italic = config.italics.keywords or false },
     Exception = { fg = colorscheme.syntaxError },
 
     PreProc = { link = 'Keyword' },
     -- Include = {},
-    Define = { fg = colorscheme.syntaxKeyword },
+    Define = { fg = colorscheme.dark_goldenrod },
     Macro = { link = 'Define' },
     PreCondit = { fg = colorscheme.syntaxError },
 
-    Type = { fg = colorscheme.syntaxKeyword },
+    Type = { fg = colorscheme.burlywood3 },
     Struct = { link = 'Type' },
     Class = { link = 'Type' },
 
@@ -174,17 +156,17 @@ local function set_groups()
     Special = { fg = colorscheme.syntaxOperator },
 
     SpecialChar = { fg = colorscheme.syntaxError },
-    Tag = { fg = colorscheme.stringText },
+    Tag = { fg = colorscheme.olive_drab },
     Delimiter = { fg = colorscheme.syntaxOperator },
     -- SpecialComment = {},
     Debug = { fg = colorscheme.specialKeyword },
 
-    Underlined = { underline = true },
-    Bold = { bold = true },
-    Italic = { italic = true },
-    Ignore = { fg = colorscheme.editorBackground },
+    Underlined = { underline = false },
+    Bold = { bold = false },
+    Italic = { italic = false },
+    Ignore = { fg = colorscheme.main_bg },
     Error = { link = 'ErrorMsg' },
-    Todo = { fg = colorscheme.warningText, bold = true },
+    Todo = { fg = '#ff0000', bold = true },
 
     -- LspReferenceText = {},
     -- LspReferenceRead = {},
@@ -195,7 +177,7 @@ local function set_groups()
 
     DiagnosticError = { link = 'Error' },
     DiagnosticWarn = { link = 'WarningMsg' },
-    DiagnosticInfo = { fg = colorscheme.syntaxFunction },
+    DiagnosticInfo = { fg = colorscheme.burlywood3 },
     DiagnosticHint = { fg = colorscheme.warningEmphasis },
     DiagnosticVirtualTextError = { link = 'DiagnosticError' },
     DiagnosticVirtualTextWarn = { link = 'DiagnosticWarn' },
@@ -233,8 +215,8 @@ local function set_groups()
     ['@texcolorscheme.italic'] = { link = 'Italic' },
     ['@texcolorscheme.title'] = { link = 'Keyword' },
     ['@texcolorscheme.uri'] = {
-      fg = colorscheme.syntaxFunction,
-      sp = colorscheme.syntaxFunction,
+      fg = colorscheme.burlywood3,
+      sp = colorscheme.burlywood3,
       underline = true,
     },
     ['@texcolorscheme.underline'] = { link = 'Underlined' },
@@ -252,14 +234,14 @@ local function set_groups()
     ['@texcolorscheme.diff.delete'] = { fg = colorscheme.errorText },
 
     ['@constant'] = { link = 'Constant' },
-    ['@constant.builtin'] = { fg = colorscheme.syntaxFunction },
+    ['@constant.builtin'] = { fg = colorscheme.burlywood3 },
     ['@constancolorscheme.builtin'] = { link = 'Keyword' },
     -- ["@constancolorscheme.macro"] = {},
     -- ["@define"] = {},
     -- ["@macro"] = {},
     ['@string'] = { link = 'String' },
-    ['@string.escape'] = { fg = utils.shade(colorscheme.stringText, 0.45) },
-    ['@string.special'] = { fg = utils.shade(colorscheme.syntaxFunction, 0.45) },
+    ['@string.escape'] = { fg = utils.shade(colorscheme.olive_drab, 0.45) },
+    ['@string.special'] = { fg = utils.shade(colorscheme.burlywood3, 0.45) },
     -- ["@character"] = {},
     -- ["@character.special"] = {},
     ['@number'] = { link = 'Number' },
@@ -276,17 +258,17 @@ local function set_groups()
     ['@method'] = { link = 'Function' },
     ['@field'] = { link = 'Property' },
     ['@property'] = { link = 'Property' },
-    ['@constructor'] = { fg = colorscheme.syntaxFunction },
+    ['@constructor'] = { fg = colorscheme.burlywood3 },
     -- ["@conditional"] = {},
     -- ["@repeat"] = {},
     ['@label'] = { link = 'Label' },
     ['@operator'] = { link = 'Operator' },
     ['@exception'] = { link = 'Exception' },
     ['@variable'] = {
-      fg = colorscheme.syntaxFunction,
+      fg = colorscheme.burlywood3,
       italic = config.italics.variables or false,
     },
-    ['@variable.builtin'] = { fg = colorscheme.syntaxFunction },
+    ['@variable.builtin'] = { fg = colorscheme.burlywood3 },
     ['@variable.member'] = { fg = colorscheme.mainText },
     ['@variable.parameter'] = {
       fg = colorscheme.mainText,
@@ -294,8 +276,8 @@ local function set_groups()
     },
     ['@type'] = { link = 'Type' },
     ['@type.definition'] = { fg = colorscheme.mainText },
-    ['@type.builtin'] = { fg = colorscheme.syntaxFunction },
-    ['@type.qualifier'] = { fg = colorscheme.syntaxFunction },
+    ['@type.builtin'] = { fg = colorscheme.burlywood3 },
+    ['@type.qualifier'] = { fg = colorscheme.burlywood3 },
     ['@keyword'] = { link = 'Keyword' },
     -- ["@storageclass"] = {},
     -- ["@structure"] = {},
@@ -307,12 +289,12 @@ local function set_groups()
     ['@tag'] = { link = 'Tag' },
     ['@tag.builtin'] = { link = 'Tag' },
     ['@tag.delimiter'] = { fg = colorscheme.syntaxOperator },
-    ['@tag.attribute'] = { fg = colorscheme.syntaxKeyword },
-    ['@tag.jsx.element'] = { fg = colorscheme.syntaxFunction },
-    ['@attribute'] = { fg = colorscheme.syntaxKeyword },
+    ['@tag.attribute'] = { fg = colorscheme.dark_goldenrod },
+    ['@tag.jsx.element'] = { fg = colorscheme.burlywood3 },
+    ['@attribute'] = { fg = colorscheme.dark_goldenrod },
     ['@error'] = { link = 'Error' },
     ['@warning'] = { link = 'WarningMsg' },
-    ['@info'] = { fg = colorscheme.syntaxFunction },
+    ['@info'] = { fg = colorscheme.burlywood3 },
 
     -- Specific languages
     -- overrides
@@ -325,7 +307,7 @@ local function set_groups()
     ['@lsp.type.type'] = { link = '@type' },
     ['@lsp.type.class'] = { link = '@type' },
     ['@lsp.type.enum'] = { link = '@type' },
-    ['@lsp.type.enumMember'] = { fg = colorscheme.syntaxFunction },
+    ['@lsp.type.enumMember'] = { fg = colorscheme.burlywood3 },
     ['@lsp.type.interface'] = { link = '@type' },
     ['@lsp.type.struct'] = { link = '@type' },
     ['@lsp.type.parameter'] = { link = '@parameter' },
