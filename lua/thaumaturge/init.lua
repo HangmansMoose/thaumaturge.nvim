@@ -40,7 +40,7 @@ local function set_groups()
   local groups = {
     -- base
     Normal = { fg = colorscheme.fg, bg = colorscheme.main_bg },
-    NormalNC = { line = 'Normal' },
+    NormalNC = { link = 'Normal' },
     LineNr = { fg = colorscheme.fg },
     Cursor = { fg = colorscheme.cursor_foreground, bg = colorscheme.cursor },
     lCursor = { link = 'Cursor' },
@@ -124,32 +124,32 @@ local function set_groups()
     Float = { link = 'Number' },
 
     Identifier = { fg = colorscheme.fg },
-    Function = { fg = colorscheme.blue },
+    Function = { fg = colorscheme.grey_light_blue },
     Method = { fg = colorscheme.zerg_purple },
     Property = { fg = colorscheme.burlywood3 },
     Field = { link = 'Property' },
     Parameter = { fg = colorscheme.fg },
-    Statement = { fg = colorscheme.error_red },
-    Conditional = { fg = colorscheme.error_red },
+    Statement = { fg = colorscheme.olive_drab },
+    Conditional = { fg = colorscheme.olive_drab },
     -- Repeat = {},
     Label = { fg = colorscheme.burlywood3 },
-    Operator = { fg = colorscheme.error_red },
-    Keyword = { link = 'Statement', italic = config.italics.keywords or false },
+    Operator = { fg = colorscheme.white },
+    Keyword = { fg = colorscheme.dark_goldenrod },
     Exception = { fg = colorscheme.error_red },
 
-    PreProc = { link = 'Keyword' },
-    -- Include = {},
-    Define = { fg = colorscheme.dark_goldenrod },
+    PreProc = { fg = colorscheme.macro_purple },
+    Include = { fg = colorscheme.macro_purple},
+    Define = { fg = colorscheme.macro_purple },
     Macro = { link = 'Define' },
-    PreCondit = { fg = colorscheme.error_red },
+    PreCondit = { fg = colorscheme.gray50 },
 
     Type = { fg = colorscheme.burlywood3 },
     Struct = { link = 'Type' },
     Class = { link = 'Type' },
 
     -- StorageClass = {},
-    -- Structure = {},
-    -- Typedef = {},
+    Structure = { fg = colorscheme.zerg_purple },
+    Typedef = { fg = colorscheme.zerg_purple },
 
     Attribute = { link = 'Character' },
     Punctuation = { fg = colorscheme.grey_light_blue },
@@ -318,15 +318,15 @@ local function set_groups()
   }
 
   -- integrations
-  groups = vim.tbl_extend('force', groups, cmp.highlights())
+  --groups = vim.tbl_extend('force', groups, cmp.highlights())
 
-  -- overrides
-  groups = vim.tbl_extend(
-    'force',
-    groups,
-    type(config.overrides) == 'function' and config.overrides()
-      or config.overrides
-  )
+  ---- overrides
+  --groups = vim.tbl_extend(
+  --  'force',
+  --  groups,
+  --  type(config.overrides) == 'function' and config.overrides()
+  --    or config.overrides
+  --)
 
   for group, parameters in pairs(groups) do
     vim.api.nvim_set_hl(0, group, parameters)
