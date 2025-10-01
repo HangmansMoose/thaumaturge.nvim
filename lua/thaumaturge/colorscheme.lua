@@ -18,7 +18,7 @@ local colorscheme = {
   pure_blue = '#0000ff',
   pure_cyan = '#00ffff',  
   comment_green = '#41D422',
-  macro_purple = '#800080',
+  macro_purple = '#c586c0',
   bright_green = '#00FF33',
   cursor = "#40ff40",
   cursor_foreground = "#303030",
@@ -66,7 +66,7 @@ local colorscheme = {
   fluery_undo                  = '#00DDEE',
   fluery_line_numbers_back     = '#101010',
   fluery_line_numbers_text     = '#404040',
-  
+
   fleury_color_syntax_crap           = '#5c4d3c',
   fleury_color_operators             = '#bd2d2d',
   fleury_color_inactive_pane_overlay = '#00000044',
@@ -92,7 +92,7 @@ local colorscheme = {
   fleury_color_lego_grab             = '#efaf6f',
   fleury_color_lego_splat            = '#efaaef',
   fleury_color_comment_user_name     = '#ffdd23',
-  
+
   -- Handmade Hero 4coder colours
   handmade_back = '#0C0C0C',
   handmade_margin = '#181818',
@@ -119,23 +119,23 @@ local colorscheme = {
   handmade_preproc = handmade_text_default,
   handmade_special_character = '#FF0000',
   handmade_ghost_character = '#4E5E46',
-  
+
   handmade_paste = '#DDEE00',
-  
+
   handmade_undo = '#00DDEE',
-  
+
   handmade_highlight_junk = '#3a0000',
   handmade_highlight_white = '#003a3a',
-  
+
   handmade_bar = '#888888',
   handmade_bar_active = '#666666',
   handmade_base = '#000000',
   handmade_pop1 = '#3C57DC',
   handmade_pop2 = '#FF0000',
-  
+
   handmade_line_numbers_back = '#101010',
   handmade_line_numbers_text = '#404040',
-  
+
   -- Naysayer 4coder colours
   naysayer_back = '#062329',
   naysayer_margin = '#143234',
@@ -163,25 +163,25 @@ local colorscheme = {
   naysayer_preproc = '#86E08F',
   naysayer_special_character = '#FF0000',
   naysayer_ghost_character = '#5B4D3C',
-  
+
   naysayer_paste = '#FFBB00',
-  
+
   naysayer_undo = '#80005D',
-  
+
   naysayer_highlight_junk = '#500000',
   naysayer_highlight_white = '#003A3A',
-  
+
   naysayer_bar = '#CACACA',
   naysayer_bar_active = '#A8A8A8',
   naysayer_base = '#000000',
   naysayer_pop1 = '#03CF0C',
   naysayer_pop2 = '#FF0000',
-  
+
   --naysayer_back_cycle = {0x30000000, 0x15000000, 0x48000000, 0x60000000}',
-  
+
   -- naysayer_text_cycle = {'#A00000, '#00A000, '#0020B0, '#A0A000}',
   naysayer_text_cycle = naysayer_text_default,
-  
+
   naysayer_line_numbers_back = '#082628',
   naysayer_line_numbers_text = '#082628',
 }
