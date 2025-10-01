@@ -6,7 +6,7 @@ local utils = require 'thaumaturge.utils'
 local theme = {}
 
 local function set_terminal_colors()
-  vim.g.terminal_color_0 = colorscheme.main_bg
+  vim.g.terminal_color_0 = colorscheme.handmade_back
   vim.g.terminal_color_1 = colorscheme.error_red
   vim.g.terminal_color_2 = colorscheme.comment_green
   vim.g.terminal_color_3 = colorscheme.day_nine_yellow
@@ -22,128 +22,102 @@ local function set_terminal_colors()
   vim.g.terminal_color_13 = colorscheme.error_red
   vim.g.terminal_color_14 = colorscheme.olive_drab
   vim.g.terminal_color_15 = colorscheme.gray50
-  vim.g.terminal_color_background = colorscheme.main_bg
+  vim.g.terminal_color_handmade_background = colorscheme.handmade_back
   vim.g.terminal_color_foreground = colorscheme.fg
 end
 
 local function set_groups()
-  local bg = config.transparent and 'NONE' or colorscheme.main_bg
-  local diff_add =
-    utils.shade(colorscheme.comment_green, 0.5, colorscheme.main_bg)
-  local diff_delete =
-    utils.shade(colorscheme.error_red, 0.5, colorscheme.main_bg)
-  local diff_change =
-    utils.shade(colorscheme.burlywood3, 0.5, colorscheme.main_bg)
-  local diff_text =
-    utils.shade(colorscheme.day_nine_yellow, 0.5, colorscheme.main_bg)
-
+  local bg = config.transparent and 'NONE' or colorscheme.handmade_back
+ 
   local groups = {
     -- base
-    Normal = { fg = colorscheme.fg, bg = colorscheme.main_bg },
+    Normal = { fg = colorscheme.naysayer_text_default, bg = colorscheme.handmade_back },
     NormalNC = { link = 'Normal' },
-    LineNr = { fg = colorscheme.fg },
+    LineNr = { bg = colorscheme.handmade_line_numbers_back , fg = colorscheme.handmade_line_numbers_text },
     Cursor = { fg = colorscheme.cursor_foreground, bg = colorscheme.cursor },
     lCursor = { link = 'Cursor' },
     CursorIM = { link = 'Cursor' },
-    CursorLine = { bg = colorscheme.cursor_line },
+    CursorLine = { bg = colorscheme.handmade_highlight_cursor_line },
+    CursorLineNr = { fg = colorscheme.day_nine_yellow },
     CursorColumn = { link = 'CursorLine' },
     Directory = { fg = colorscheme.burlywood3 },
-    --DiffAdd = { bg = bg, fg = diff_add },
-    --DiffChange = { bg = bg, fg = diff_change },
-    --DiffDelete = { bg = bg, fg = diff_delete },
-    --DiffText = { bg = bg, fg = diff_text },
-    EndOfBuffer = { fg = colorscheme.dark_goldenrod },
+    DiffAdd = { bg = bg, fg = diff_add },
+    DiffChange = { bg = bg, fg = diff_change },
+    DiffDelete = { bg = bg, fg = diff_delete },
+    DiffText = { bg = bg, fg = diff_text },
+    EndOfBuffer = { fg = colorscheme.naysayer_text_default },
     TermCursor = { link = 'Cursor' },
     TermCursorNC = { link = 'Cursor' },
     ErrorMsg = { fg = colorscheme.error_red },
-    VertSplit = { fg = colorscheme.windowBorder, bg = bg },
+    VertSplit = { fg = colorscheme.handmade_bar, bg = handmade_back },
     Winseparator = { link = 'VertSplit' },
     SignColumn = { link = 'Normal' },
-    Folded = { fg = colorscheme.fg, bg = colorscheme.popupBackground },
+    Folded = { fg = colorscheme.naysayer_text_default, bg = colorscheme.handmade_background },
     FoldColumn = { link = 'SignColumn' },
-    IncSearch = {
-      bg = utils.mix(
-        colorscheme.burlywood3,
-        colorscheme.main_bg,
-        math.abs(0.30)
-      ),
-      fg = colorscheme.main_bg,
-    },
+    IncSearch = { bg = colorscheme.handmade_highlight, fg = colorscheme.handmade_back },
     Substitute = { link = 'IncSearch' },
-    CursorLineNr = { fg = colorscheme.gray50 },
-    MatchParen = { fg = colorscheme.error_red, bg = bg },
+    MatchParen = { fg = colorscheme.fleury_color_brace_highlight, bg = colorscheme.handmade_back },
     ModeMsg = { link = 'Normal' },
     MsgArea = { link = 'Normal' },
     -- MsgSeparator = {},
     MoreMsg = { fg = colorscheme.burlywood3 },
-    NonText = { fg = utils.shade(colorscheme.main_bg, 0.30) },
-    NormalFloat = { bg = colorscheme.floating_bg },
+    NonText = { fg = utils.shade(colorscheme.handmade_back, 0.30) },
+    NormalFloat = { bg = colorscheme.handmade_mark },
     Pmenu = { link = 'NormalFloat' },
-    PmenuSel = { bg = colorscheme.menuOptionBackground },
-    PmenuSbar = {
-      bg = utils.shade(
-        colorscheme.burlywood3,
-        0.5,
-        colorscheme.main_bg
-      ),
-    },
-    PmenuThumb = { bg = utils.shade(colorscheme.main_bg, 0.20) },
-    Question = { fg = colorscheme.burlywood3 },
-    QuickFixLine = { fg = colorscheme.burlywood3 },
+    PmenuSel = { bg = colorscheme.handmade_bar_active },
+    PmenuSbar = { bg = colorscheme.handmade_bar },
+    PmenuThumb = { bg = colorscheme.handmade_bar },
+    Question = { fg = colorscheme.handmade_ghost_character },
+    QuickFixLine = { fg = colorscheme.handmade_ghost_character },
     SpecialKey = { fg = colorscheme.grey_light_blue },
-    StatusLine = { fg = colorscheme.fg, bg = bg },
+    StatusLine = { fg = colorscheme.naysayer_text_default, bg = colorscheme.handmade_back },
     StatusLineNC = {
-      fg = colorscheme.inactiveText,
-      bg = colorscheme.sidebarBackground,
+      fg = colorscheme.handmade_bar_active,
+      bg = colorscheme.handmade_background,
     },
     TabLine = {
-      bg = colorscheme.sidebarBackground,
-      fg = colorscheme.inactiveText,
+      bg = colorscheme.handmade_background,
+      fg = colorscheme.handmade_bar_active,
     },
     TabLineFill = { link = 'TabLine' },
-    Search = { bg = utils.shade(colorscheme.olive_drab, 0.40, colorscheme.bg) },
-    Title = { fg = colorscheme.burlywood3 },
+    Search = { bg = colorscheme.handmade_highlight, fg = colorscheme.handmade_highlight_white },
+    Title = { fg = colorscheme.naysayer_text_default },
     Visual = {
-      bg = utils.shade(
-        colorscheme.burlywood3,
-        0.40,
-        colorscheme.main_bg
-      ),
+      bg = colorscheme.handmade_highlight_junk
     },
     VisualNOS = { link = 'Visual' },
     WarningMsg = { fg = colorscheme.warningText },
-    Whitespace = { fg = colorscheme.grey_light_blue },
-    WildMenu = { bg = colorscheme.menuOptionBackground },
-    Comment = { fg = colorscheme.gray50 },
+    Whitespace = { fg = colorscheme.handmade_ghost_character },
+    Comment = { fg = colorscheme.fluery_comment },
 
-    Constant = { fg = colorscheme.macro_purple },
-    String = { fg = colorscheme.olive_drab },
-    Character = { fg = colorscheme.olive_drab },
-    Number = { fg = colorscheme.day_nine_yellow },
-    Boolean = { fg = colorscheme.burlywood3 },
+    Constant = { fg = colorscheme.fluery_str_constant },
+    String = { fg = colorscheme.naysayer_str_constant },
+    Character = { fg = colorscheme.naysayer_char_constant },
+    Number = { fg = colorscheme.naysayer_int_constant },
+    Boolean = { fg = colorscheme.naysayer_int_constant },
     Float = { link = 'Number' },
 
-    Identifier = { fg = colorscheme.fg },
-    Function = { fg = colorscheme.grey_light_blue },
-    Method = { fg = colorscheme.zerg_purple },
-    Property = { fg = colorscheme.burlywood3 },
+    Identifier = { fg = colorscheme.fleury_color_syntax_crap },
+    Function = { fg = colorscheme.fluery_color_index_macro },
+    Method = { fg = colorscheme.fleury_color_plot_cycle },
+    -- Property = { fg = colorscheme.burlywood3 },
     Field = { link = 'Property' },
-    Parameter = { fg = colorscheme.fg },
+    Parameter = { fg = colorscheme.naysayer_text_default },
     Statement = { fg = colorscheme.olive_drab },
     Conditional = { fg = colorscheme.olive_drab },
     -- Repeat = {},
     Label = { fg = colorscheme.burlywood3 },
-    Operator = { fg = colorscheme.white },
-    Keyword = { fg = colorscheme.dark_goldenrod },
-    Exception = { fg = colorscheme.error_red },
+    Operator = { fg = colorscheme.naysayer_text_default },
+    Keyword = { fg = colorscheme.handmade_keyword },
+    -- Exception = { fg = colorscheme.error_red },
 
-    PreProc = { fg = colorscheme.macro_purple },
-    Include = { fg = colorscheme.macro_purple},
-    Define = { fg = colorscheme.macro_purple },
-    Macro = { link = 'Define' },
+    PreProc = { fg = colorscheme.fluery_color_index_decl },
+    Include = { link = 'PreProc' },
+    Define = { link = 'PreProc' },
+    Macro = { link = 'PreProc' },
     PreCondit = { fg = colorscheme.gray50 },
 
-    Type = { fg = colorscheme.burlywood3 },
+    Type = { fg = colorscheme.dark_goldenrod },
     Struct = { link = 'Type' },
     Class = { link = 'Type' },
 
@@ -155,7 +129,7 @@ local function set_groups()
     Punctuation = { fg = colorscheme.grey_light_blue },
     Special = { fg = colorscheme.grey_light_blue },
 
-    SpecialChar = { fg = colorscheme.error_red },
+    SpecialChar = { fg = colorscheme.fleury_color_syntax_crap },
     Tag = { fg = colorscheme.olive_drab },
     Delimiter = { fg = colorscheme.grey_light_blue },
     -- SpecialComment = {},
@@ -164,7 +138,7 @@ local function set_groups()
     Underlined = { underline = false },
     Bold = { bold = false },
     Italic = { italic = false },
-    Ignore = { fg = colorscheme.main_bg },
+    Ignore = { fg = colorscheme.handmade_back },
     Error = { link = 'ErrorMsg' },
     Todo = { fg = '#ff0000', bold = true },
 
